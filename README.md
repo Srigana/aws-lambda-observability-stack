@@ -16,7 +16,7 @@ CloudWatch provides the source metrics/logs, and an optional Prometheus stack (Y
 7. Alerts → **Alertmanager** (email/web UI)
 
 > Add your architecture diagram here:
-> `![Architecture](./docs/architecture.png)`
+> `![Architecture](/demo-images/ArchDiag.png)`
 
 ## Tech Stack
 
