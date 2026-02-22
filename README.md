@@ -28,6 +28,11 @@ CloudWatch provides the source metrics/logs, and Prometheus stack (YACE → Prom
 - Observability: Prometheus, Alertmanager, Grafana, YACE (CloudWatch exporter)
 - Runtime: Python + Pillow
 
+## Pipeline Demonstration
+| Source (Raw Upload) | Destination (Processed Artifacts) |
+| :--- | :--- |
+| ![Source S3](./demo-images/s3_upload.png) | ![Destination S3](./demo-images/s3_processed.png) |
+
 ## Repository Structure
 
 ```text
@@ -78,6 +83,16 @@ Endpoints:
 - Grafana → http://<EC2-IP>:3000
 - Prometheus → http://<EC2-IP>:9090
 - Alertmanager → http://<EC2-IP>:9093
+  
+## Observability & Monitoring
+Once the stack is running via Docker Compose, you can access the following views:
+
+### Grafana Dashboard
+![Grafana Dashboard](./demo-images/Grafana_db.png)
+
+### Prometheus Metrics Extraction (YACE)
+This screenshot confirms that YACE is successfully scraping Lambda metrics from CloudWatch:
+![Prometheus UI](./demo-images/Prometheus_UI.png)
 
 ## Example PromQL Queries
 
