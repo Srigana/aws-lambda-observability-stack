@@ -1,0 +1,38 @@
+#!/bin/bash
+set -euo pipefail
+
+dnf update -y
+dnf install -y docker unzip awscli
+dnf install -y curl-minimal || true
+
+systemctl enable docker
+systemctl start docker
+
+# Install Docker Compose v2 as CLI plugin (AL2023 safe)
+mkdir -p /usr/local/lib/docker/cli-plugins
+
+if command -v curl >/dev/null 2>&1; then
+  curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+    -o /usr/local/lib/docker/cli-plugins/docker-compose
+else
+  dnf install -y wget
+  wget -O /usr/local/lib/docker/cli-plugins/docker-compose \
+    https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64
+fi
+
+chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+
+# Fetch configs and start stack
+mkdir -p /opt/observability
+cd /opt/observability
+
+aws s3 cp "s3://${assets_bucket}/${assets_key}" ./observability.zip
+unzip -o observability.zip
+
+cd /opt/observability/observability
+
+if [ ! -f .env ]; then
+  cp .env.example .env
+fi
+
+docker compose up -d

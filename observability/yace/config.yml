@@ -1,0 +1,24 @@
+apiVersion: v1alpha1
+
+discovery:
+  jobs:
+    - type: "AWS/Lambda"
+      regions:
+        - us-east-1
+      metrics:
+        - name: Errors
+          statistics: [Sum]
+          period: 60
+          length: 300
+        - name: Throttles
+          statistics: [Sum]
+          period: 60
+          length: 300
+        - name: Invocations
+          statistics: [Sum]
+          period: 60
+          length: 300
+        - name: Duration
+          statistics: [Average, Maximum]
+          period: 60
+          length: 300
