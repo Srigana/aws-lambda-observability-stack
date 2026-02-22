@@ -1,8 +1,8 @@
 # AWS Serverless Image Processor + Observability (Prometheus/Grafana)
 
-A serverless image-processing pipeline on AWS (S3 → Lambda) with production-style monitoring.
+A serverless image-processing pipeline on AWS (S3 → Lambda) with monitoring.
 
-CloudWatch provides the source metrics/logs, and an optional Prometheus stack (YACE → Prometheus → Grafana + Alertmanager) makes the metrics easy to demo and dashboard.
+CloudWatch provides the source metrics/logs, and Prometheus stack (YACE → Prometheus → Grafana + Alertmanager) makes the metrics easy to demo and dashboard.
 
 ## Architecture
 
