@@ -15,8 +15,11 @@ CloudWatch provides the source metrics/logs, and an optional Prometheus stack (Y
 6. CloudWatch metrics → **YACE** → **Prometheus** → **Grafana**
 7. Alerts → **Alertmanager** (email/web UI)
 
-> Add your architecture diagram here:
-> `![Architecture](/demo-images/ArchDiag.png)`
+> <p align="center">
+  <img src="demo-images/ArchDiag.png" width="600"/>
+</p>
+
+
 
 ## Tech Stack
 
