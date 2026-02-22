@@ -16,7 +16,7 @@ CloudWatch provides the source metrics/logs, and Prometheus stack (YACE → Prom
 7. Alerts → **Alertmanager** (email/web UI)
 
 > <p align="center">
-  <img src="demo-images/ArchDiag01.png" width="700"/>
+  <img src="demo-images/ArchDiag01.png" width="900"/>
 </p>
 
 
