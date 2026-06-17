@@ -22,3 +22,7 @@ discovery:
           statistics: [Average, Maximum]
           period: 60
           length: 300
+        - name: ConcurrentExecutions
+          statistics: [Maximum]
+          period: 60
+          length: 300
