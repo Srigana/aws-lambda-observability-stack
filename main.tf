@@ -138,6 +138,15 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
   depends_on = [aws_lambda_permission.allow_s3_invoke]
 }
 
+resource "aws_lambda_function_url" "responder" {
+  function_name      = aws_lambda_function.responder.function_name
+  authorization_type = "NONE"
+}
+
+output "responder_url" {
+  value = aws_lambda_function_url.responder.function_url
+}
+
 module "observability_ec2" {
   source = "./modules/observability_ec2"
   count  = var.enable_observability ? 1 : 0
