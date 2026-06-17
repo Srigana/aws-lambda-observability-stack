@@ -27,3 +27,14 @@ groups:
     annotations:
       summary: "No Lambda invocations"
       description: "No invocations in 10m for image-processor-dev-processor"
+
+  - alert: HighErrorRate
+    expr: |
+      increase(aws_lambda_errors_sum{dimension_FunctionName="image-processor-dev-processor"}[5m])
+      / increase(aws_lambda_invocations_sum{dimension_FunctionName="image-processor-dev-processor"}[5m]) > 0.05
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Lambda error rate exceeded 5%"
+      description: "Error rate is {{ $value | humanizePercentage }} for image-processor-dev-processor"
