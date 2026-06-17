@@ -65,6 +65,12 @@ module "log_alerts" {
   tags                 = local.common_tags
 }
 
+resource "aws_sqs_queue" "dlq" {
+  name                      = "${local.lambda_function_name}-dlq"
+  message_retention_seconds = 1209600
+  tags                      = local.common_tags
+}
+
 module "cloudwatch_alarms" {
   source = "./modules/cloudwatch_alarms"
 
@@ -112,6 +118,14 @@ module "lambda_function" {
   upload_bucket_id     = module.s3_buckets.upload_bucket_id
   processed_bucket_arn = module.s3_buckets.processed_bucket_arn
   processed_bucket_id  = module.s3_buckets.processed_bucket_id
+ 
+  dead_letter_config {
+    target_arn = aws_sqs_queue.dlq.arn
+  }
+
+  tracing_config {
+    mode = "Active"
+  }
 
   log_level          = var.log_level
   log_retention_days = var.log_retention_days
