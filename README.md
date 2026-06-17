@@ -1,6 +1,6 @@
-# AWS Serverless Image Processor + Observability (Prometheus/Grafana)
+# Lambda Recovery Loop
 
-A serverless image-processing pipeline on AWS (S3 → Lambda) with a self-healing observability stack — metrics, tracing, alerting, and automated incident response.
+A serverless image-processing pipeline on AWS (S3 → Lambda) with a self-healing observability stack - metrics, tracing, alerting, and automated incident response.
 
 ## Architecture
 
