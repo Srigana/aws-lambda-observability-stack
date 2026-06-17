@@ -11,9 +11,17 @@ route:
   group_wait: 10s
   group_interval: 1m
   repeat_interval: 1h
+  routes:
+    - match:
+        alertname: HighErrorRate
+      receiver: webhook-responder
 
 receivers:
   - name: "gmail"
     email_configs:
       - to: "YOUR_TO_EMAIL@gmail.com"
+        send_resolved: true
+  - name: webhook-responder
+    webhook_configs:
+      - url: "${RESPONDER_URL}"
         send_resolved: true
