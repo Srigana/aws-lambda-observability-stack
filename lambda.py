@@ -6,6 +6,8 @@ from urllib.parse import unquote_plus
 from io import BytesIO
 from PIL import Image
 import uuid
+from aws_xray_sdk.core import xray_recorder, patch_all
+patch_all()
 
 # Configure logging
 logger = logging.getLogger()
