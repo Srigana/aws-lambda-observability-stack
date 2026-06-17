@@ -170,3 +170,18 @@ module "observability_assets" {
   zip_path = "${path.root}/observability.zip"
   tags     = local.common_tags
 }
+
+resource "aws_iam_role_policy" "responder_policy" {
+  role = aws_iam_role.responder.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect   = "Allow"
+      Action   = [
+        "lambda:PutFunctionConcurrency",
+        "lambda:DeleteFunctionConcurrency"
+      ]
+      Resource = module.lambda_function.function_arn
+    }]
+  })
+}
